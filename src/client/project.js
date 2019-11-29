@@ -13,8 +13,12 @@ export class Project extends React.PureComponent {
         {project.url && <a href={`${project.url}/pipelines`} target="_blank" rel="noopener noreferrer">{project.name}</a>}
         {!project.url && project.name}
       </h2>
-      <Stages stages={pipeline.stages} maxNonFailedJobsVisible={project.maxNonFailedJobsVisible}/>
-      <Info now={now} pipeline={pipeline}/>
+      {project.pipelines.map((pipeline) => {
+        return <div>
+          <Stages stages={pipeline.stages} maxNonFailedJobsVisible={project.maxNonFailedJobsVisible}/>
+          <Info now={now} pipeline={pipeline}/>
+        </div>
+      })}
     </li>
   }
 
